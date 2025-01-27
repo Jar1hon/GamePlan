@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePlan.Server", "GamePlan.Server\GamePlan.Server.csproj", "{89CA50F5-8E95-465B-B9E3-425A3BB04088}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "gameplan.client", "gameplan.client\gameplan.client.esproj", "{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89CA50F5-8E95-465B-B9E3-425A3BB04088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CA50F5-8E95-465B-B9E3-425A3BB04088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CA50F5-8E95-465B-B9E3-425A3BB04088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CA50F5-8E95-465B-B9E3-425A3BB04088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
