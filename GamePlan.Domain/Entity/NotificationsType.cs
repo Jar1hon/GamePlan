@@ -6,5 +6,6 @@ namespace GamePlan.Domain.Entity
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
+		public List<Notifications> Notifications { get; set; }
 	}
 }

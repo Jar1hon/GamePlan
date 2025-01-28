@@ -10,7 +10,10 @@ namespace GamePlan.Domain.Entity
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 		public StatusesForProjects Status { get; set; }
+		public Guid StatusId { get; set; }
+		public List<Tasks> Tasks { get; set; }
 		public Users CreatedBy { get; set; }
+		public Guid CreatedById { get; set; }
 		public DateTime CreatedAt { get; set; }
 		public DateTime? UpdatedAt { get; set; }
 	}

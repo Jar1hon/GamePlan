@@ -10,9 +10,12 @@ namespace GamePlan.Domain.Entity
 		public string PasswordHash { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public List<RolesForUsers> Role { get; set; }
-		public List<Teams> Team { get; set; }
-		public List<Achievments> Achievment { get; set; }
+		public List<RolesForUsers> Roles { get; set; }
+		public List<Teams> Teams { get; set; }
+		public List<Achievments> Achievments { get; set; }
+		public List<Notifications> Notifications { get; set; }
+		public List<Tasks> Tasks { get; set; }
+		public List<Projects> Projects { get; set; }
 		public UserToken UserToken { get; set; }
 		public DateTime CreatedAt { get; set; }
 		public DateTime? UpdatedAt { get; set; }

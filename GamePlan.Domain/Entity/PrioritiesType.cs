@@ -6,5 +6,7 @@ namespace GamePlan.Domain.Entity
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
+		public List<Tasks> Tasks { get; set; }
+		public List<Projects> Projects { get; set; }
 	}
 }
