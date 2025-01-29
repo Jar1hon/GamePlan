@@ -39,7 +39,7 @@ namespace GamePlan.Application.Resources {
 		public static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FonTech.Application.Resources.ErrorMessage", typeof(ErrorMessage).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GamePlan.Application.Resources.ErrorMessage", typeof(ErrorMessage).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;

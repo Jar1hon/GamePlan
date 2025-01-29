@@ -20,13 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GamePlan.Application\GamePlan.Application.csproj" />
     <ProjectReference Include="..\gameplan.client\gameplan.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\GamePlan.DAL\GamePlan.DAL.csproj" />
+    <ProjectReference Include="..\GamePlan.Domain\GamePlan.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,14 @@
+using GamePlan.Application.DependencyInjection;
+using GamePlan.DAL.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDataAccessLayer(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

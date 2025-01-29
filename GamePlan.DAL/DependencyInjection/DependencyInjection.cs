@@ -43,7 +43,10 @@ namespace GamePlan.DAL.DependencyInjection
 			services.AddScoped<IBaseRepository<StatusesForTasks>, BaseRepository<StatusesForTasks>>();
 			services.AddScoped<IBaseRepository<Tasks>, BaseRepository<Tasks>>();
 			services.AddScoped<IBaseRepository<Teams>, BaseRepository<Teams>>();
+			services.AddScoped<IBaseRepository<UserRewards>, BaseRepository<UserRewards>>();
 			services.AddScoped<IBaseRepository<Users>, BaseRepository<Users>>();
+			services.AddScoped<IBaseRepository<UserInRoles>, BaseRepository<UserInRoles>>();
+			services.AddScoped<IBaseRepository<UsersInTeams>, BaseRepository<UsersInTeams>>();
 			services.AddScoped<IBaseRepository<UserToken>, BaseRepository<UserToken>>();
 		}
 	}

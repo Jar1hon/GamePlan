@@ -21,29 +21,29 @@ namespace GamePlan.DAL.Repositories
 			ArgumentNullException.ThrowIfNull(entity);
 
 			await _dbContext.AddAsync(entity);
+			await _dbContext.SaveChangesAsync();
 
 			return entity;
 		}
 
-		public TEntity Update(TEntity entity)
+		public async Task<TEntity> UpdateAsync(TEntity entity)
 		{
 			ArgumentNullException.ThrowIfNull(entity);
 
 			_dbContext.Update(entity);
+			await _dbContext.SaveChangesAsync();
 
 			return entity;
 		}
 
-		public void Delete(TEntity entity)
+		public async Task<TEntity> DeleteAsync(TEntity entity)
 		{
 			ArgumentNullException.ThrowIfNull(entity);
 
 			_dbContext.Remove(entity);
-		}
+			await _dbContext.SaveChangesAsync();
 
-		public async Task<int> SaveChangeAsync(TEntity entity)
-		{
-			return await _dbContext.SaveChangesAsync();
+			return entity;
 		}
 	}
 }
