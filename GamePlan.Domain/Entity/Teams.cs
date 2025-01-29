@@ -9,6 +9,6 @@ namespace GamePlan.Domain.Entity
 		public string Description { get; set; }
 		public List<Users> Users { get; set; }
 		public DateTime CreatedAt { get; set; }
-		public DateTime UpdatedAt { get; set; }
+		public DateTime? UpdatedAt { get; set; }
 	}
 }

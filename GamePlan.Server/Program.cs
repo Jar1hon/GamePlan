@@ -1,7 +1,10 @@
 using GamePlan.Application.DependencyInjection;
 using GamePlan.DAL.DependencyInjection;
+using GamePlan.Domain.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.DefaultSections));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

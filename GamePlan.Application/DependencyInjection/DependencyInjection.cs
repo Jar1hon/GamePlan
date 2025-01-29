@@ -16,6 +16,7 @@ namespace GamePlan.Application.DependencyInjection
 		private static void InitServices(this IServiceCollection services)
 		{
 			services.AddScoped<IAuthService, AuthServices>();
+			services.AddScoped<ITokenService, TokenServices>();
 		}
 	}
 }
