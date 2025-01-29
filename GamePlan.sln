@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamePlan.Api", "GamePlan.Server\GamePlan.Api.csproj", "{89CA50F5-8E95-465B-B9E3-425A3BB04088}"
 EndProject
@@ -31,7 +31,6 @@ Global
 		{89CA50F5-8E95-465B-B9E3-425A3BB04088}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F6080AD-E4B2-443D-B5AF-EAA982B5976A}.Release|Any CPU.Deploy.0 = Release|Any CPU
