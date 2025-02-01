@@ -129,6 +129,24 @@
   <data name="InvalidToken" xml:space="preserve">
     <value>Некорректный токен</value>
   </data>
+  <data name="PasswordHaventLowerCase" xml:space="preserve">
+    <value>Пароль должен содержать как минимум 1 букву в нижнем регистре</value>
+  </data>
+  <data name="PasswordHaventNumber" xml:space="preserve">
+    <value>Пароль должен содержать числа</value>
+  </data>
+  <data name="PasswordHaventSpecChar" xml:space="preserve">
+    <value>Пароль должен содержать специальный символ</value>
+  </data>
+  <data name="PasswordHaventUpperCase" xml:space="preserve">
+    <value>Пароль должен содержать как минимум 1 букву в верхнем регистре</value>
+  </data>
+  <data name="PasswordIsEmpty" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="PasswordLessThen8Char" xml:space="preserve">
+    <value>Пароль должен содержать больше 8 символов</value>
+  </data>
   <data name="PasswordsNotEquals" xml:space="preserve">
     <value>Введенные пароли не совпадают</value>
   </data>

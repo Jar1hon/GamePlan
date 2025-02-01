@@ -40,11 +40,6 @@ namespace GamePlan.Application.Services
 
 		public async Task<BaseResult<UserDto>> Register(RegisterUserDto dto)
 		{
-			if (dto.Password != dto.PasswordConfirm)
-			{
-				throw new OperationException((int)ErrorCodes.PasswordsNotEquals);
-			}
-
 			var user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.UserName == dto.UserName);
 
 			if (user != null)

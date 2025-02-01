@@ -1,4 +1,5 @@
-﻿using GamePlan.Domain.Dto;
+﻿using Asp.Versioning;
+using GamePlan.Domain.Dto;
 using GamePlan.Domain.Dto.User;
 using GamePlan.Domain.Interfaces.Services;
 using GamePlan.Domain.Result;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace GamePlan.Api.Controllers
 {
 	[ApiController]
+	[ApiVersion("1.0")]
+	[Route("api/v{version:apiVersion}/[controller]")]
 	public class AuthController : ControllerBase
 	{
 		private readonly IAuthService _authService;
@@ -22,6 +25,8 @@ namespace GamePlan.Api.Controllers
 		/// <param name="dto"></param>
 		/// <returns></returns>
 		[HttpPost("register")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<ActionResult<BaseResult<UserDto>>> Register([FromBody] RegisterUserDto dto)
 		{
 			var response = await _authService.Register(dto);
@@ -40,6 +45,8 @@ namespace GamePlan.Api.Controllers
 		/// <param name="dto"></param>
 		/// <returns></returns>
 		[HttpPost("login")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<ActionResult<BaseResult<TokenDto>>> Login([FromBody] LoginUserDto dto)
 		{
 			var response = await _authService.Login(dto);
