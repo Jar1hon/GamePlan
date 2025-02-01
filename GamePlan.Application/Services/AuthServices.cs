@@ -6,8 +6,10 @@ using GamePlan.Domain.Entity;
 using GamePlan.Domain.Enum;
 using GamePlan.Domain.Interfaces.Repositories;
 using GamePlan.Domain.Interfaces.Services;
+using GamePlan.Domain.OperationException;
 using GamePlan.Domain.Result;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,9 +24,10 @@ namespace GamePlan.Application.Services
 		private readonly IBaseRepository<UserToken> _userTokenRepository;
 		private readonly ITokenService _tokenService;
 		private readonly IMapper _mapper;
+		private readonly ILogger _logger;
 
 		public AuthServices(IBaseRepository<Users> userRepository, IMapper mapper, IBaseRepository<RolesForUsers> roleRepository,
-			IBaseRepository<UserInRoles> userRoleRepository, ITokenService tokenService, IBaseRepository<UserToken> userTokenRepository)
+			IBaseRepository<UserInRoles> userRoleRepository, ITokenService tokenService, IBaseRepository<UserToken> userTokenRepository, ILogger logger)
 		{
 			_userRepository = userRepository;
 			_mapper = mapper;
@@ -32,28 +35,21 @@ namespace GamePlan.Application.Services
 			_userRoleRepository = userRoleRepository;
 			_tokenService = tokenService;
 			_userTokenRepository = userTokenRepository;
+			_logger = logger;
 		}
 
 		public async Task<BaseResult<UserDto>> Register(RegisterUserDto dto)
 		{
 			if (dto.Password != dto.PasswordConfirm)
 			{
-				return new BaseResult<UserDto>()
-				{
-					ErrorMessage = ErrorMessage.PasswordsNotEquals,
-					ErrorCode = (int)ErrorCodes.PasswordsNotEquals
-				};
+				throw new OperationException((int)ErrorCodes.PasswordsNotEquals);
 			}
 
 			var user = await _userRepository.GetAll().FirstOrDefaultAsync(x => x.UserName == dto.UserName);
 
 			if (user != null)
 			{
-				return new BaseResult<UserDto>()
-				{
-					ErrorMessage = ErrorMessage.UserAlreadyExists,
-					ErrorCode = (int)ErrorCodes.UserAlreadyExists
-				};
+				throw new OperationException((int)ErrorCodes.UserAlreadyExists);
 			}
 
 			var hashUserPassword = HashPassword(dto.Password);
@@ -69,11 +65,7 @@ namespace GamePlan.Application.Services
 
 			if (role == null)
 			{
-				return new BaseResult<UserDto>()
-				{
-					ErrorMessage = ErrorMessage.RoleNotFound,
-					ErrorCode = (int)ErrorCodes.RoleNotFound
-				};
+				throw new OperationException((int)ErrorCodes.RoleNotFound);
 			}
 
 			var userRole = new UserInRoles()
@@ -98,20 +90,12 @@ namespace GamePlan.Application.Services
 
 			if (user == null)
 			{
-				return new BaseResult<TokenDto>()
-				{
-					ErrorMessage = ErrorMessage.UserNotFound,
-					ErrorCode = (int)ErrorCodes.UserNotFound
-				};
+				throw new OperationException((int)ErrorCodes.UserNotFound);
 			}
 
 			if (!IsVerifiedPassword(user.PasswordHash, dto.Password))
 			{
-				return new BaseResult<TokenDto>()
-				{
-					ErrorMessage = ErrorMessage.IncorrectPassword,
-					ErrorCode = (int)ErrorCodes.IncorrectPassword
-				};
+				throw new OperationException((int)ErrorCodes.IncorrectPassword);
 			}
 
 			var userToken = await _userTokenRepository.GetAll().FirstOrDefaultAsync(x => x.UserId == user.Id);

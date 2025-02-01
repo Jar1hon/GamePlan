@@ -1,7 +1,9 @@
 using GamePlan.Api;
+using GamePlan.Api.Middlewares;
 using GamePlan.Application.DependencyInjection;
 using GamePlan.DAL.DependencyInjection;
 using GamePlan.Domain.Settings;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +13,15 @@ builder.Services.AddControllers();
 builder.Services.AddAuthenticationAndAuthorization(builder);
 builder.Services.AddSwagger();
 
+builder.Host.UseSerilog((context, configuration) =>
+	configuration.ReadFrom.Configuration(context.Configuration));
+
 builder.Services.AddDataAccessLayer(builder.Configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -28,13 +32,7 @@ if (app.Environment.IsDevelopment())
 		//c.SwaggerEndpoint("/swagger/v2/swagger.json", "GamePlan Swagger v2.0");
 	});
 }
-
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-
-app.MapFallbackToFile("/index.html");
-
 app.Run();
