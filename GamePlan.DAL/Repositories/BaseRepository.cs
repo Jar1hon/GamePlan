@@ -16,6 +16,11 @@ namespace GamePlan.DAL.Repositories
 			return _dbContext.Set<TEntity>();
 		}
 
+		public async Task<TEntity> GetById(Guid id)
+		{
+			return await _dbContext.FindAsync<TEntity>(id);
+		}
+
 		public async Task<TEntity> CreateAsync(TEntity entity)
 		{
 			ArgumentNullException.ThrowIfNull(entity);

@@ -4,7 +4,7 @@
 	{
 		IQueryable<TEntity> GetAll();
 
-		Task<TEntity> Get(Guid id);
+		Task<TEntity> GetById(Guid id);
 
 		Task<TEntity> CreateAsync(TEntity entity);
 

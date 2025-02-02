@@ -24,10 +24,9 @@ namespace GamePlan.Application.Services
 		private readonly IBaseRepository<UserToken> _userTokenRepository;
 		private readonly ITokenService _tokenService;
 		private readonly IMapper _mapper;
-		private readonly ILogger _logger;
 
 		public AuthServices(IBaseRepository<Users> userRepository, IMapper mapper, IBaseRepository<RolesForUsers> roleRepository,
-			IBaseRepository<UserInRoles> userRoleRepository, ITokenService tokenService, IBaseRepository<UserToken> userTokenRepository, ILogger logger)
+			IBaseRepository<UserInRoles> userRoleRepository, ITokenService tokenService, IBaseRepository<UserToken> userTokenRepository)
 		{
 			_userRepository = userRepository;
 			_mapper = mapper;
@@ -35,7 +34,6 @@ namespace GamePlan.Application.Services
 			_userRoleRepository = userRoleRepository;
 			_tokenService = tokenService;
 			_userTokenRepository = userTokenRepository;
-			_logger = logger;
 		}
 
 		public async Task<BaseResult<UserDto>> Register(RegisterUserDto dto)

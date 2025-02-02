@@ -23,7 +23,19 @@ namespace GamePlan.Api.Controllers
 		/// Регистрация пользователя
 		/// </summary>
 		/// <param name="dto"></param>
-		/// <returns></returns>
+		/// <remarks>
+		///	Метод для регистрации пользователя:
+		///	
+		///		POST
+		///		{
+		///			"UserName": "test",
+		///			"Password": "Test1!",
+		///			"ConfirmPassword": "Test1!"
+		///		}
+		///		
+		///</remarks>
+		///<response code="200">Пользователь зарегистрирован</response>
+		///<response code="400">Возникла ошибка при регистрации</response>
 		[HttpPost("register")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -40,10 +52,21 @@ namespace GamePlan.Api.Controllers
 		}
 
 		/// <summary>
-		/// Логин пользователя
+		/// Авторизация пользователя
 		/// </summary>
 		/// <param name="dto"></param>
-		/// <returns></returns>
+		/// <remarks>
+		///	Метод для авторизации пользователя:
+		///	
+		///		POST
+		///		{
+		///			"UserName": "test",
+		///			"Password": "Test1!"
+		///		}
+		///		
+		///</remarks>
+		///<response code="200">Успешная авторизация</response>
+		///<response code="400">Возникла ошибка при регистрации авторизации</response>
 		[HttpPost("login")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
