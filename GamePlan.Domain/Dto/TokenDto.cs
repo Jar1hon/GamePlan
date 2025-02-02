@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 namespace GamePlan.Domain.Dto
 {
-	public class TokenDto
-	{
-		public string AccessToken { get; set; }
-
-		public string RefreshToken { get; set; }
-	}
+	public record TokenDto(string AccessToken, string RefreshToken);
 }

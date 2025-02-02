@@ -40,7 +40,7 @@ namespace GamePlan.Api.Controllers
 		{
 			var response = await _tokenService.RefreshToken(dto);
 
-			if (response.IsSucces)
+			if (response.isSuccess)
 			{
 				return Ok(response);
 			}

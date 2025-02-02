@@ -101,11 +101,7 @@ namespace GamePlan.Application.Services
 
 			return new BaseResult<TokenDto>
 			{
-				Data = new TokenDto()
-				{
-					AccessToken = accessToken,
-					RefreshToken = newRefreshToken
-				}
+				Data = new TokenDto(accessToken, newRefreshToken)
 			};
 		}
 	}

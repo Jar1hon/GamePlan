@@ -9,226 +9,236 @@
 //------------------------------------------------------------------------------
 
 namespace GamePlan.Application.Resources {
-    using System;
-    
-    
-    /// <summary>
-    ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
-    /// </summary>
-    // Этот класс создан автоматически классом StronglyTypedResourceBuilder
-    // с помощью такого средства, как ResGen или Visual Studio.
-    // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
-    // с параметром /str или перестройте свой проект VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+	using System;
+	
+	
+	/// <summary>
+	///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+	/// </summary>
+	// Этот класс создан автоматически классом StronglyTypedResourceBuilder
+	// с помощью такого средства, как ResGen или Visual Studio.
+	// Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
+	// с параметром /str или перестройте свой проект VS.
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
 	public class ErrorMessage {
-        
-        private static global::System.Resources.ResourceManager resourceMan;
-        
-        private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessage() {
-        }
-        
-        /// <summary>
-        ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+		
+		private static global::System.Resources.ResourceManager resourceMan;
+		
+		private static global::System.Globalization.CultureInfo resourceCulture;
+		
+		[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+		internal ErrorMessage() {
+		}
+		
+		/// <summary>
+		///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+		/// </summary>
+		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GamePlan.Application.Resources.ErrorMessage", typeof(ErrorMessage).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
-            }
-        }
-        
-        /// <summary>
-        ///   Перезаписывает свойство CurrentUICulture текущего потока для всех
-        ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
-        /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+			get {
+				if (object.ReferenceEquals(resourceMan, null)) {
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GamePlan.Application.Resources.ErrorMessage", typeof(ErrorMessage).Assembly);
+					resourceMan = temp;
+				}
+				return resourceMan;
+			}
+		}
+		
+		/// <summary>
+		///   Перезаписывает свойство CurrentUICulture текущего потока для всех
+		///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+		/// </summary>
+		[global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
 		public static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
-        }
-
+			get {
+				return resourceCulture;
+			}
+			set {
+				resourceCulture = value;
+			}
+		}
+		
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Неверный пароль.
 		/// </summary>
 		public static string IncorrectPassword {
-            get {
-                return ResourceManager.GetString("IncorrectPassword", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("IncorrectPassword", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Внутренняя ошибка сервера.
 		/// </summary>
 		public static string InternalServerError {
-            get {
-                return ResourceManager.GetString("InternalServerError", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("InternalServerError", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Некорректный запрос клиента.
 		/// </summary>
 		public static string InvalidClientRequest {
-            get {
-                return ResourceManager.GetString("InvalidClientRequest", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("InvalidClientRequest", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Некорректный токен.
 		/// </summary>
 		public static string InvalidToken {
-            get {
-                return ResourceManager.GetString("InvalidToken", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("InvalidToken", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пароль должен содержать как минимум 1 букву в нижнем регистре.
 		/// </summary>
 		public static string PasswordHaventLowerCase {
-            get {
-                return ResourceManager.GetString("PasswordHaventLowerCase", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordHaventLowerCase", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пароль должен содержать числа.
 		/// </summary>
 		public static string PasswordHaventNumber {
-            get {
-                return ResourceManager.GetString("PasswordHaventNumber", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordHaventNumber", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пароль должен содержать специальный символ.
 		/// </summary>
 		public static string PasswordHaventSpecChar {
-            get {
-                return ResourceManager.GetString("PasswordHaventSpecChar", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordHaventSpecChar", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пароль должен содержать как минимум 1 букву в верхнем регистре.
 		/// </summary>
 		public static string PasswordHaventUpperCase {
-            get {
-                return ResourceManager.GetString("PasswordHaventUpperCase", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordHaventUpperCase", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Введите пароль.
 		/// </summary>
 		public static string PasswordIsEmpty {
-            get {
-                return ResourceManager.GetString("PasswordIsEmpty", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordIsEmpty", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пароль должен содержать больше 8 символов.
 		/// </summary>
 		public static string PasswordLessThen8Char {
-            get {
-                return ResourceManager.GetString("PasswordLessThen8Char", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordLessThen8Char", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Введенные пароли не совпадают.
 		/// </summary>
 		public static string PasswordsNotEquals {
-            get {
-                return ResourceManager.GetString("PasswordsNotEquals", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("PasswordsNotEquals", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Такой отчёт уже существует.
 		/// </summary>
 		public static string ReportAlreadyExist {
-            get {
-                return ResourceManager.GetString("ReportAlreadyExist", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("ReportAlreadyExist", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Отчёт не найден.
 		/// </summary>
 		public static string ReportNotFound {
-            get {
-                return ResourceManager.GetString("ReportNotFound", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("ReportNotFound", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Отчёты не найдены.
 		/// </summary>
 		public static string ReportsNotFound {
-            get {
-                return ResourceManager.GetString("ReportsNotFound", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("ReportsNotFound", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Данная роль уже есть у выбранного пользователя.
 		/// </summary>
 		public static string RoleAlreadyExists {
-            get {
-                return ResourceManager.GetString("RoleAlreadyExists", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("RoleAlreadyExists", resourceCulture);
+			}
+		}
 
+		/// <summary>
+		///   Ищет локализованную строку, похожую на Данная роль уже есть уже существует.
+		/// </summary>
+		public static string RoleForUserAlreadyExists
+		{
+			get {
+				return ResourceManager.GetString("RoleForUserAlreadyExists", resourceCulture);
+			}
+		}
+		
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Указанная роль отсутствует.
 		/// </summary>
 		public static string RoleNotFound {
-            get {
-                return ResourceManager.GetString("RoleNotFound", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("RoleNotFound", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Такой пользователь уже существует.
 		/// </summary>
 		public static string UserAlreadyExists {
-            get {
-                return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("UserAlreadyExists", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пользователь с такой ролью уже существует.
 		/// </summary>
 		public static string UserAlreadyExistsWithThisRole {
-            get {
-                return ResourceManager.GetString("UserAlreadyExistsWithThisRole", resourceCulture);
-            }
-        }
+			get {
+				return ResourceManager.GetString("UserAlreadyExistsWithThisRole", resourceCulture);
+			}
+		}
 
 		/// <summary>
 		///   Ищет локализованную строку, похожую на Пользователь не найден.
 		/// </summary>
 		public static string UserNotFound {
-            get {
-                return ResourceManager.GetString("UserNotFound", resourceCulture);
-            }
-        }
-    }
+			get {
+				return ResourceManager.GetString("UserNotFound", resourceCulture);
+			}
+		}
+	}
 }

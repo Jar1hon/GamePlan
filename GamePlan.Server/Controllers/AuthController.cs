@@ -43,7 +43,7 @@ namespace GamePlan.Api.Controllers
 		{
 			var response = await _authService.Register(dto);
 
-			if (response.IsSucces)
+			if (response.isSuccess)
 			{
 				return Ok(response);
 			}
@@ -74,7 +74,7 @@ namespace GamePlan.Api.Controllers
 		{
 			var response = await _authService.Login(dto);
 
-			if (response.IsSucces)
+			if (response.isSuccess)
 			{
 				return Ok(response);
 			}

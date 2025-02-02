@@ -160,6 +160,9 @@
     <value>Отчёты не найдены</value>
   </data>
   <data name="RoleAlreadyExists" xml:space="preserve">
+    <value>Данная роль уже существует</value>
+  </data>
+  <data name="RoleForUserAlreadyExists" xml:space="preserve">
     <value>Данная роль уже есть у выбранного пользователя</value>
   </data>
   <data name="RoleNotFound" xml:space="preserve">

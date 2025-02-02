@@ -1,6 +1,7 @@
 ﻿using GamePlan.DAL.Interceptors;
 using GamePlan.DAL.Repositories;
 using GamePlan.Domain.Entity;
+using GamePlan.Domain.Interfaces.DataBaseses;
 using GamePlan.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ namespace GamePlan.DAL.DependencyInjection
 		/// <param name="services"></param>
 		private static void InitRepositories(this IServiceCollection services)
 		{
+			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IBaseRepository<Achievments>, BaseRepository<Achievments>>();
 			services.AddScoped<IBaseRepository<Levels>, BaseRepository<Levels>>();
 			services.AddScoped<IBaseRepository<Notifications>, BaseRepository<Notifications>>();
