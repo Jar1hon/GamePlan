@@ -19,6 +19,8 @@
 		RoleAlreadyExists = 31,
 		RoleNotFound = 32,
 
+		EntityNotFound = 41,
+
 		InternalServerError = 10
 	}
 }

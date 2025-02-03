@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using GamePlan.Domain.Dto.Role;
+using GamePlan.Domain.Dto.RolesForUsers;
 using GamePlan.Domain.Dto.UserRole;
 using GamePlan.Domain.Entity;
 using GamePlan.Domain.Interfaces.Services;
@@ -23,24 +24,25 @@ namespace GamePlan.Api.Controllers
 		}
 
 		/// <summary>
-		/// Создание роли
+		/// Создает новую роль.
 		/// </summary>
-		/// <param name="dto"></param>
+		/// <param name="dto">DTO (Data Transfer Object) с данными для создания роли.</param>
 		/// <remarks>
-		///	Метод для создания роли:
-		///	
-		///		POST
-		///		{
-		///			"name": "admin"
-		///		}
-		///		
-		///</remarks>
-		///<response code="200">Роль создана</response>
-		///<response code="400">Возникла ошибка при создании роли</response>
+		/// Пример запроса:
+		///
+		///     POST /create-role
+		///     {
+		///         "name": "admin"
+		///     }
+		///
+		/// В случае успешного создания роли возвращается объект с данными созданной роли.
+		/// </remarks>
+		/// <response code="200">Роль успешно создана. Возвращает данные созданной роли.</response>
+		/// <response code="400">Ошибка при создании роли. Возвращает сообщение об ошибке.</response>
 		[HttpPost("create-role")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> Create([FromBody] CreateRolesForUsersDto dto)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> CreateRole([FromBody] CreateRolesForUsersDto dto)
 		{
 			var response = await _roleService.CreateRoleAsync(dto);
 
@@ -70,7 +72,7 @@ namespace GamePlan.Api.Controllers
 		[HttpDelete("delete-role{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> Delete(Guid id)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> DeleteRole(Guid id)
 		{
 			var response = await _roleService.DeleteRoleAsync(id);
 
@@ -102,7 +104,7 @@ namespace GamePlan.Api.Controllers
 		[HttpPut("update-role")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> Update([FromBody] RolesForUsersDto dto)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> UpdateRole([FromBody] RolesForUsersDto dto)
 		{
 			var response = await _roleService.UpdateRoleAsync(dto);
 
@@ -133,7 +135,7 @@ namespace GamePlan.Api.Controllers
 		[HttpPost("add-userrole")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> AddRoleForUserAsync([FromBody] UsersInRolesDto dto)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> AddRoleForUser([FromBody] UsersInRolesDto dto)
 		{
 			var response = await _roleService.AddRoleForUserAsync(dto);
 
@@ -153,7 +155,7 @@ namespace GamePlan.Api.Controllers
 		[HttpDelete("delete-userrole")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> DeleteRoleForUserAsync([FromBody] DeleteUserRoleDto dto)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> DeleteRoleForUser([FromBody] DeleteUserRoleDto dto)
 		{
 			var response = await _roleService.DeleteRoleForUserAsync(dto);
 
@@ -173,9 +175,29 @@ namespace GamePlan.Api.Controllers
 		[HttpPut("update-userrole")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<ActionResult<BaseResult<RolesForUsers>>> UpdateRoleForUserAsync([FromBody] UpdateUserRoleDto dto)
+		public async Task<ActionResult<BaseResult<RolesForUsers>>> UpdateRoleForUser([FromBody] UpdateUserRoleDto dto)
 		{
 			var response = await _roleService.UpdateRoleForUserAsync(dto);
+
+			if (response.isSuccess)
+			{
+				return Ok(response);
+			}
+
+			return BadRequest(response);
+		}
+
+		/// <summary>
+		/// Получение роли пользователя
+		/// </summary>
+		/// <param name="dto"></param>
+		/// <returns></returns>
+		[HttpGet("get-userrole")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<ActionResult<BaseResult<List<UserWithRolesDto>>>> GetAll()
+		{
+			var response = await _roleService.GetAllUsersWithRolesAsync();
 
 			if (response.isSuccess)
 			{

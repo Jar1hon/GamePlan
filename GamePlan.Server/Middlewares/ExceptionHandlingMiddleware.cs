@@ -2,7 +2,6 @@
 using GamePlan.Domain.Enum;
 using GamePlan.Domain.OperationException;
 using GamePlan.Domain.Result;
-using System.Resources;
 using ILogger = Serilog.ILogger;
 
 namespace GamePlan.Api.Middlewares
@@ -31,7 +30,7 @@ namespace GamePlan.Api.Middlewares
 		}
 
 		private async Task HandleExceptionAsync(HttpContext httpcontext, OperationException exception)
-		{     
+		{
 			var errorCode = exception.ErrorCode;
 
 			var response = errorCode switch
@@ -40,13 +39,21 @@ namespace GamePlan.Api.Middlewares
 				(int)ErrorCodes.IncorrectPassword => new BaseResult() { ErrorMessage = ErrorMessage.IncorrectPassword, ErrorCode = errorCode },
 				(int)ErrorCodes.PasswordsNotEquals => new BaseResult() { ErrorMessage = ErrorMessage.PasswordsNotEquals, ErrorCode = errorCode },
 				(int)ErrorCodes.UserAlreadyExists => new BaseResult() { ErrorMessage = ErrorMessage.UserAlreadyExists, ErrorCode = errorCode },
-				
+				(int)ErrorCodes.EntityNotFound => new BaseResult() { ErrorMessage = ErrorMessage.EntityNotFound, ErrorCode = errorCode },
+
 				_ => new BaseResult() { ErrorMessage = "Внутренняя ошибка сервера.", ErrorCode = (int)ErrorCodes.InternalServerError }
 			};
 
-			_logger.Error($"Код ошибки: {response.ErrorCode}, {response.ErrorMessage}");
+			var errorMessage = $"Код ошибки: {response.ErrorCode}, {response.ErrorMessage}";
 
-		   httpcontext.Response.ContentType = "application/json";
+			if (exception.Message != String.Empty)
+			{
+				errorMessage += $" {exception.Message}";
+			}
+
+			_logger.Error(errorMessage);
+
+			httpcontext.Response.ContentType = "application/json";
 			httpcontext.Response.StatusCode = (int)response.ErrorCode;
 			await httpcontext.Response.WriteAsJsonAsync(response);
 		}

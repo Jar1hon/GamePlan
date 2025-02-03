@@ -9,5 +9,10 @@ namespace GamePlan.Domain.OperationException
 		{
 			ErrorCode = errorCodes;
 		}
+
+		public OperationException(int errorCodes, string message) : base(message)
+		{
+			ErrorCode = errorCodes;
+		}
 	}
 }

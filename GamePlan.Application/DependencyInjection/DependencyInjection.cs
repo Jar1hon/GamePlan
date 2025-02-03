@@ -14,7 +14,7 @@ namespace GamePlan.Application.DependencyInjection
 	{
 		public static void AddApplication(this IServiceCollection services)
 		{
-			services.AddAutoMapper([typeof(UserMapping), typeof(RolesForUsersMapping)]);
+			services.AddAutoMapper([typeof(UserMapping), typeof(RolesForUsersMapping), typeof(UserWithRolesMapping)]);
 			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 			services.AddFluentValidationAutoValidation();
 			services.AddFluentValidationClientsideAdapters();

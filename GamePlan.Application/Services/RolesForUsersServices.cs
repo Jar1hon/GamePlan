@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using GamePlan.Application.Resources;
 using GamePlan.Domain.Dto.Role;
+using GamePlan.Domain.Dto.RolesForUsers;
+using GamePlan.Domain.Dto.User;
 using GamePlan.Domain.Dto.UserRole;
 using GamePlan.Domain.Entity;
 using GamePlan.Domain.Enum;
@@ -143,11 +146,6 @@ namespace GamePlan.Application.Services
 
 				return new BaseResult<UsersInRolesDto>()
 				{
-					//Data = new UsersInRolesDto()
-					//{
-					//	Login = dto.Login,
-					//	Role = dto.Role
-					//}
 					Data = new UsersInRolesDto(dto.Login, dto.Role)
 				};
 			}
@@ -193,11 +191,6 @@ namespace GamePlan.Application.Services
 
 			return new BaseResult<UsersInRolesDto>()
 			{
-				//Data = new UsersInRolesDto()
-				//{
-				//	Login = user.UserName,
-				//	Role = role.Name
-				//}
 				Data = new UsersInRolesDto(user.UserName, role.Name)
 			};
 		}
@@ -267,13 +260,89 @@ namespace GamePlan.Application.Services
 
 			return new BaseResult<UsersInRolesDto>()
 			{
-				//Data = new UsersInRolesDto()
-				//{
-				//	Login = user.UserName,
-				//	Role = newRoleForUser.Name
-				//}
 				Data = new UsersInRolesDto(user.UserName, newRoleForUser.Name)
 			};
+		}
+
+		public Task<BaseResult<List<RolesForUsersDto>>> GetAllRolesAsync()
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<RolesForUsersDto>> GetRoleByIdAsync(Guid id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<RolesForUsersDto>>> GetUserRolesAsync(Guid userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<UserDto>>> GetUsersInRoleAsync(Guid roleId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<bool>> IsUserInRoleAsync(Guid userId, Guid roleId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public async Task<BaseResult<List<UserWithRolesDto>>> GetAllUsersWithRolesAsync()
+		{
+			var users = await _userRepository.GetAll()
+				.Include(u => u.Roles)
+				.ThenInclude(ur => ur.User)
+				.ProjectTo<UserWithRolesDto>(_mapper.ConfigurationProvider)
+				.ToListAsync();
+
+			var userDtos = _mapper.Map<List<UserWithRolesDto>>(users);
+
+			return new BaseResult<List<UserWithRolesDto>>()
+			{
+				Data = _mapper.Map<List<UserWithRolesDto>>(users)
+			};
+		}
+
+		public Task<BaseResult<RolesForUsersDto>> GetRoleByNameAsync(string roleName)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<bool>> DeleteAllRolesForUserAsync(Guid userId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<RolesForUsersDto>>> GetRolesWithPaginationAsync(int page, int pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<UserWithRolesDto>>> GetUsersWithRolesPaginationAsync(int page, int pageSize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<int>> GetUserCountInRoleAsync(Guid roleId)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<RoleWithUserCountDto>>> GetAllRolesWithUserCountAsync()
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<RolesForUsersDto>>> GetRolesByFilterAsync(RoleFilterDto filter)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Task<BaseResult<List<UserWithRolesDto>>> GetUsersWithRolesByFilterAsync(UserRoleFilterDto filter)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
