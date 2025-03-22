@@ -11,11 +11,11 @@ namespace GamePlan.DAL.Repositories
 
 		public IBaseRepository<Users> Users { get; set; }
 
-		public IBaseRepository<RolesForUsers> Roles { get; set; }
+		public IBaseRepository<Roles> Roles { get; set; }
 
 		public IBaseRepository<UserInRoles> UserRoles { get; set; }
 
-		public UnitOfWork(ApplicationDbContext context, IBaseRepository<Users> users, IBaseRepository<RolesForUsers> roles, IBaseRepository<UserInRoles> userRoles)
+		public UnitOfWork(ApplicationDbContext context, IBaseRepository<Users> users, IBaseRepository<Roles> roles, IBaseRepository<UserInRoles> userRoles)
 		{
 			_context = context;
 			Users = users;

@@ -37,10 +37,12 @@ namespace GamePlan.DAL.DependencyInjection
 			services.AddScoped<IBaseRepository<Levels>, BaseRepository<Levels>>();
 			services.AddScoped<IBaseRepository<Notifications>, BaseRepository<Notifications>>();
 			services.AddScoped<IBaseRepository<NotificationsType>, BaseRepository<NotificationsType>>();
+			services.AddScoped<IBaseRepository<Objects>, BaseRepository<Objects>>();
+			services.AddScoped<IBaseRepository<Permissions>, BaseRepository<Permissions>>();
 			services.AddScoped<IBaseRepository<PrioritiesType>, BaseRepository<PrioritiesType>>();
 			services.AddScoped<IBaseRepository<Projects>, BaseRepository<Projects>>();
-			services.AddScoped<IBaseRepository<RolesForTeams>, BaseRepository<RolesForTeams>>();
-			services.AddScoped<IBaseRepository<RolesForUsers>, BaseRepository<RolesForUsers>>();
+			services.AddScoped<IBaseRepository<Roles>, BaseRepository<Roles>>();
+			services.AddScoped<IBaseRepository<RolesPermissions>, BaseRepository<RolesPermissions>>();
 			services.AddScoped<IBaseRepository<StatusesForProjects>, BaseRepository<StatusesForProjects>>();
 			services.AddScoped<IBaseRepository<StatusesForTasks>, BaseRepository<StatusesForTasks>>();
 			services.AddScoped<IBaseRepository<Tasks>, BaseRepository<Tasks>>();
@@ -48,7 +50,6 @@ namespace GamePlan.DAL.DependencyInjection
 			services.AddScoped<IBaseRepository<UserRewards>, BaseRepository<UserRewards>>();
 			services.AddScoped<IBaseRepository<Users>, BaseRepository<Users>>();
 			services.AddScoped<IBaseRepository<UserInRoles>, BaseRepository<UserInRoles>>();
-			services.AddScoped<IBaseRepository<UsersInTeams>, BaseRepository<UsersInTeams>>();
 			services.AddScoped<IBaseRepository<UserToken>, BaseRepository<UserToken>>();
 		}
 	}

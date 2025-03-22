@@ -14,7 +14,7 @@ namespace GamePlan.Application.DependencyInjection
 	{
 		public static void AddApplication(this IServiceCollection services)
 		{
-			services.AddAutoMapper([typeof(UserMapping), typeof(RolesForUsersMapping), typeof(UserWithRolesMapping)]);
+			services.AddAutoMapper([typeof(UserMapping), typeof(RolesMapping), typeof(UserWithRolesMapping)]);
 			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 			services.AddFluentValidationAutoValidation();
 			services.AddFluentValidationClientsideAdapters();
@@ -26,7 +26,7 @@ namespace GamePlan.Application.DependencyInjection
 			services.AddScoped<IValidator<RegisterUserDto>, RegisterUserValidator>();
 			services.AddScoped<IAuthService, AuthServices>();
 			services.AddScoped<ITokenService, TokenServices>();
-			services.AddScoped<IRolesForUsersService, RolesForUsersServices>();
+			services.AddScoped<IRolesService, RolesServices>();
 		}
 	}
 }

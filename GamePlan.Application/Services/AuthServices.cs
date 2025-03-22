@@ -19,13 +19,13 @@ namespace GamePlan.Application.Services
 	public class AuthServices : IAuthService
 	{
 		private readonly IBaseRepository<Users> _userRepository;
-		private readonly IBaseRepository<RolesForUsers> _roleRepository;
+		private readonly IBaseRepository<Roles> _roleRepository;
 		private readonly IBaseRepository<UserInRoles> _userRoleRepository;
 		private readonly IBaseRepository<UserToken> _userTokenRepository;
 		private readonly ITokenService _tokenService;
 		private readonly IMapper _mapper;
 
-		public AuthServices(IBaseRepository<Users> userRepository, IMapper mapper, IBaseRepository<RolesForUsers> roleRepository,
+		public AuthServices(IBaseRepository<Users> userRepository, IMapper mapper, IBaseRepository<Roles> roleRepository,
 			IBaseRepository<UserInRoles> userRoleRepository, ITokenService tokenService, IBaseRepository<UserToken> userTokenRepository)
 		{
 			_userRepository = userRepository;

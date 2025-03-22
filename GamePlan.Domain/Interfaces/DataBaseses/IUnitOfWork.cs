@@ -11,7 +11,7 @@ namespace GamePlan.Domain.Interfaces.DataBaseses
 
 		IBaseRepository<Users> Users { get; set; }
 
-		IBaseRepository<RolesForUsers> Roles { get; set; }
+		IBaseRepository<Roles> Roles { get; set; }
 
 		IBaseRepository<UserInRoles> UserRoles { get; set; }
 

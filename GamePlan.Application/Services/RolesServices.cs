@@ -16,15 +16,15 @@ using System.Data;
 
 namespace GamePlan.Application.Services
 {
-	public class RolesForUsersServices : IRolesForUsersService
+	public class RolesServices : IRolesService
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IBaseRepository<Users> _userRepository;
-		private readonly IBaseRepository<RolesForUsers> _roleRepository;
+		private readonly IBaseRepository<Roles> _roleRepository;
 		private readonly IBaseRepository<UserInRoles> _userRoleRepository;
 		private readonly IMapper _mapper;
 
-		public RolesForUsersServices(IBaseRepository<RolesForUsers> roleRepository, IBaseRepository<Users> userRepository, IMapper mapper,
+		public RolesServices(IBaseRepository<Roles> roleRepository, IBaseRepository<Users> userRepository, IMapper mapper,
 			IBaseRepository<UserInRoles> userRoleRepository, IUnitOfWork unitOfWork)
 		{
 			_roleRepository = roleRepository;
@@ -34,20 +34,20 @@ namespace GamePlan.Application.Services
 			_unitOfWork = unitOfWork;
 		}
 
-		public async Task<BaseResult<RolesForUsersDto>> CreateRoleAsync(CreateRolesForUsersDto dto)
+		public async Task<BaseResult<RolesDto>> CreateRoleAsync(CreateRolesDto dto)
 		{
 			var role = await _roleRepository.GetAll().FirstOrDefaultAsync(x => x.Name == dto.Name);
 
 			if (role != null)
 			{
-				return new BaseResult<RolesForUsersDto>()
+				return new BaseResult<RolesDto>()
 				{
 					ErrorMessage = ErrorMessage.RoleAlreadyExists,
 					ErrorCode = (int)ErrorCodes.RoleAlreadyExists
 				};
 			}
 
-			role = new RolesForUsers()
+			role = new Roles()
 			{
 				Name = dto.Name,
 				Description = dto.Description,
@@ -55,19 +55,19 @@ namespace GamePlan.Application.Services
 
 			await _roleRepository.CreateAsync(role);
 
-			return new BaseResult<RolesForUsersDto>()
+			return new BaseResult<RolesDto>()
 			{
-				Data = _mapper.Map<RolesForUsersDto>(role)
+				Data = _mapper.Map<RolesDto>(role)
 			};
 		}
 
-		public async Task<BaseResult<RolesForUsersDto>> DeleteRoleAsync(Guid id)
+		public async Task<BaseResult<RolesDto>> DeleteRoleAsync(Guid id)
 		{
 			var role = await _roleRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
 
 			if (role == null)
 			{
-				return new BaseResult<RolesForUsersDto>()
+				return new BaseResult<RolesDto>()
 				{
 					ErrorMessage = ErrorMessage.RoleNotFound,
 					ErrorCode = (int)ErrorCodes.RoleNotFound
@@ -76,19 +76,19 @@ namespace GamePlan.Application.Services
 
 			await _roleRepository.DeleteAsync(role);
 
-			return new BaseResult<RolesForUsersDto>()
+			return new BaseResult<RolesDto>()
 			{
-				Data = _mapper.Map<RolesForUsersDto>(role)
+				Data = _mapper.Map<RolesDto>(role)
 			};
 		}
 
-		public async Task<BaseResult<RolesForUsersDto>> UpdateRoleAsync(RolesForUsersDto dto)
+		public async Task<BaseResult<RolesDto>> UpdateRoleAsync(RolesDto dto)
 		{
 			var role = await _roleRepository.GetAll().FirstOrDefaultAsync(x => x.Id == dto.Id);
 
 			if (role == null)
 			{
-				return new BaseResult<RolesForUsersDto>()
+				return new BaseResult<RolesDto>()
 				{
 					ErrorMessage = ErrorMessage.RoleNotFound,
 					ErrorCode = (int)ErrorCodes.RoleNotFound
@@ -100,13 +100,13 @@ namespace GamePlan.Application.Services
 
 			var updatedRole = await _roleRepository.UpdateAsync(role);
 
-			return new BaseResult<RolesForUsersDto>()
+			return new BaseResult<RolesDto>()
 			{
-				Data = _mapper.Map<RolesForUsersDto>(updatedRole)
+				Data = _mapper.Map<RolesDto>(updatedRole)
 			};
 		}
 
-		public async Task<BaseResult<UsersInRolesDto>> AddRoleForUserAsync(UsersInRolesDto dto)
+		public async Task<BaseResult<UsersInRolesDto>> AddRoleToUserAsync(UsersInRolesDto dto)
 		{
 			var user = await _userRepository.GetAll()
 				.Include(x => x.Roles)
@@ -157,7 +157,7 @@ namespace GamePlan.Application.Services
 			};
 		}
 
-		public async Task<BaseResult<UsersInRolesDto>> DeleteRoleForUserAsync(DeleteUserRoleDto dto)
+		public async Task<BaseResult<UsersInRolesDto>> DeleteRoleFromUserAsync(DeleteUserRoleDto dto)
 		{
 			var user = await _userRepository.GetAll()
 				.Include(x => x.Roles)
@@ -195,7 +195,7 @@ namespace GamePlan.Application.Services
 			};
 		}
 
-		public async Task<BaseResult<UsersInRolesDto>> UpdateRoleForUserAsync(UpdateUserRoleDto dto)
+		public async Task<BaseResult<UsersInRolesDto>> UpdateRoleToUserAsync(UpdateUserRoleDto dto)
 		{
 			var user = await _userRepository.GetAll()
 				.Include(x => x.Roles)
@@ -264,29 +264,81 @@ namespace GamePlan.Application.Services
 			};
 		}
 
-		public Task<BaseResult<List<RolesForUsersDto>>> GetAllRolesAsync()
+		public async Task<BaseResult<List<RolesDto>>> GetAllRolesAsync()
 		{
-			throw new NotImplementedException();
+			var roles = await _roleRepository.GetAll()
+				.ToListAsync();
+
+			var roleDtos = _mapper.Map<List<RolesDto>>(roles);
+
+			return new BaseResult<List<RolesDto>>()
+			{
+				Data = roleDtos
+			};
 		}
 
-		public Task<BaseResult<RolesForUsersDto>> GetRoleByIdAsync(Guid id)
+		public async Task<BaseResult<RolesDto>> GetRoleByRoleIdAsync(Guid roleId)
 		{
-			throw new NotImplementedException();
+			var role = await _roleRepository.GetByIdAsync(roleId);
+
+			if (role == null)
+			{
+				return new BaseResult<RolesDto>()
+				{
+					ErrorMessage = ErrorMessage.RoleNotFound,
+					ErrorCode = (int)ErrorCodes.RoleNotFound
+				};
+			}
+
+			return new BaseResult<RolesDto>()
+			{
+				Data = _mapper.Map<RolesDto>(role)
+			};
 		}
 
-		public Task<BaseResult<List<RolesForUsersDto>>> GetUserRolesAsync(Guid userId)
+		public async Task<BaseResult<List<UserWithRolesDto>>> GetRolesByUserIdAsync(Guid userId)
 		{
-			throw new NotImplementedException();
+			var roles = await _userRepository.GetAll()
+				.Include(u => u.Roles)
+				.Where(u => u.Id == userId)
+				.ProjectTo<UserWithRolesDto>(_mapper.ConfigurationProvider)
+				.ToListAsync();
+
+			var roleDtos = _mapper.Map<List<UserWithRolesDto>>(roles);
+
+			return new BaseResult<List<UserWithRolesDto>>()
+			{
+				Data = roleDtos
+			};
 		}
 
-		public Task<BaseResult<List<UserDto>>> GetUsersInRoleAsync(Guid roleId)
+		public async Task<BaseResult<List<UserDto>>> GetUsersByRoleIdAsync(Guid roleId)
 		{
-			throw new NotImplementedException();
+			var users = await _roleRepository.GetAll()
+				.Include(x => x.User)
+				.Where(x => x.Id == roleId)
+				.ToListAsync();
+
+			var userDtos = _mapper.Map<List<UserDto>>(users);
+
+			return new BaseResult<List<UserDto>>()
+			{
+				Data = userDtos
+			};
 		}
 
-		public Task<BaseResult<bool>> IsUserInRoleAsync(Guid userId, Guid roleId)
+		public async Task<BaseResult<bool>> IsUserInRoleAsync(Guid userId, Guid roleId)
 		{
-			throw new NotImplementedException();
+			var user = await _userRepository.GetAll()
+				.Include(x => x.Roles)
+				.FirstOrDefaultAsync(x => x.Id == userId);
+
+			var roles = user.Roles.Where(x => x.Id == roleId);
+
+			return new BaseResult<bool>()
+			{
+				Data = roles.Any()
+			};
 		}
 
 		public async Task<BaseResult<List<UserWithRolesDto>>> GetAllUsersWithRolesAsync()
@@ -301,48 +353,30 @@ namespace GamePlan.Application.Services
 
 			return new BaseResult<List<UserWithRolesDto>>()
 			{
-				Data = _mapper.Map<List<UserWithRolesDto>>(users)
+				Data = userDtos
 			};
 		}
 
-		public Task<BaseResult<RolesForUsersDto>> GetRoleByNameAsync(string roleName)
+		public async Task<BaseResult<RolesDto>> GetRoleIdByNameAsync(string roleName)
 		{
-			throw new NotImplementedException();
-		}
+			var role = await _roleRepository.GetAll()
+				.FirstOrDefaultAsync(x => x.Name == roleName);
 
-		public Task<BaseResult<bool>> DeleteAllRolesForUserAsync(Guid userId)
-		{
-			throw new NotImplementedException();
-		}
+			if (role == null)
+			{
+				return new BaseResult<RolesDto>()
+				{
+					ErrorMessage = ErrorMessage.RoleNotFound,
+					ErrorCode = (int)ErrorCodes.RoleNotFound
+				};
+			}
 
-		public Task<BaseResult<List<RolesForUsersDto>>> GetRolesWithPaginationAsync(int page, int pageSize)
-		{
-			throw new NotImplementedException();
-		}
+			var roleDto = _mapper.Map<RolesDto>(role);
 
-		public Task<BaseResult<List<UserWithRolesDto>>> GetUsersWithRolesPaginationAsync(int page, int pageSize)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<BaseResult<int>> GetUserCountInRoleAsync(Guid roleId)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<BaseResult<List<RoleWithUserCountDto>>> GetAllRolesWithUserCountAsync()
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<BaseResult<List<RolesForUsersDto>>> GetRolesByFilterAsync(RoleFilterDto filter)
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<BaseResult<List<UserWithRolesDto>>> GetUsersWithRolesByFilterAsync(UserRoleFilterDto filter)
-		{
-			throw new NotImplementedException();
+			return new BaseResult<RolesDto>()
+			{
+				Data = roleDto
+			};
 		}
 	}
 }

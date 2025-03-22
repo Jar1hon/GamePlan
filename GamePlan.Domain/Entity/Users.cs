@@ -10,7 +10,7 @@ namespace GamePlan.Domain.Entity
 		public string PasswordHash { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
-		public List<RolesForUsers> Roles { get; set; }
+		public List<Roles> Roles { get; set; }
 		public List<Teams> Teams { get; set; }
 		public List<Achievments> Achievments { get; set; }
 		public List<Notifications> Notifications { get; set; }

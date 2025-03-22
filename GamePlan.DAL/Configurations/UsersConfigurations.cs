@@ -27,13 +27,7 @@ namespace GamePlan.DAL.Configurations
 			builder.HasMany(x => x.Roles)
 				.WithMany(x => x.User)
 				.UsingEntity<UserInRoles>(
-					l => l.HasOne<RolesForUsers>().WithMany().HasForeignKey(x => x.RoleId),
-					l => l.HasOne<Users>().WithMany().HasForeignKey(x => x.UserId)
-				);
-			builder.HasMany(x => x.Teams)
-				.WithMany(x => x.Users)
-				.UsingEntity<UsersInTeams>(
-					l => l.HasOne<Teams>().WithMany().HasForeignKey(x => x.TeamId),
+					l => l.HasOne<Roles>().WithMany().HasForeignKey(x => x.RoleId),
 					l => l.HasOne<Users>().WithMany().HasForeignKey(x => x.UserId)
 				);
 			builder.HasMany(x => x.Achievments)
